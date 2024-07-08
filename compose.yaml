@@ -1,0 +1,32 @@
+services:
+  web_app:
+    build: .
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/
+    ports:
+      - "5005:5005"
+    depends_on:
+      - mongodb
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /code
+    networks:
+      - quad-network
+  mongodb:
+    image: "mongo:latest"
+    ports:
+      - '27017:27017'
+    networks:
+      - quad-network
+    volumes:
+      - /Users/richardhickstein/Documents/Developement/Projects/composetest/test_data:/data/db
+
+networks:
+  quad-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local

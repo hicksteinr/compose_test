@@ -1,0 +1,12 @@
+{% extends "layout.html" %} 
+{% block content %} 
+  {% for m in our_mongos %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="content-section">
+        <div class="mr-2">{{ m.db }}</div>
+        <small class="text-muted">{{ m.collection }}</small>
+    </div>
+  </article>
+  {% endfor %} 
+{% endblock content %}
